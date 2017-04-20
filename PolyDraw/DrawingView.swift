@@ -44,7 +44,7 @@ class DrawingView: UIView {
         let touch = touches.first! as UITouch
         self.initialPoint = touch.location(in: self)
         self.isThereAPartialShape = true
-
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,7 +71,9 @@ class DrawingView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.theShapes.append(self.thePartialShape)
+        if let theShape = self.thePartialShape {
+            self.theShapes.append(theShape)
+        }
         self.isThereAPartialShape = false
     }
 }
